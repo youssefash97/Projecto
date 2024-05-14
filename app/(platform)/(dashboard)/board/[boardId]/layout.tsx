@@ -3,11 +3,7 @@ import { auth } from "@clerk/nextjs";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
 
-export async function generateMetaData({
-  params,
-}: {
-  params: { boardId: string };
-}) {
+async function generateMetaData({ params }: { params: { boardId: string } }) {
   const { orgId } = auth();
   if (!orgId) {
     return {
