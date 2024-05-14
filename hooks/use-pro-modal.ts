@@ -3,7 +3,7 @@ import { create } from "zustand";
 type ProModalStore = {
   id?: string;
   isOpen: boolean;
-  onOpen: (id: string) => void;
+  onOpen: () => void;
   onClose: () => void;
 };
 
