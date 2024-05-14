@@ -8,6 +8,28 @@ interface BoardIdPageProps {
     boardId: string;
   };
 }
+export async function generateMetaData({
+  params,
+}: {
+  params: { boardId: string };
+}) {
+  const { orgId } = auth();
+  if (!orgId) {
+    return {
+      title: "Board",
+    };
+  }
+  const board = await db.board.findUnique({
+    where: {
+      id: params.boardId,
+      orgId,
+    },
+  });
+
+  return {
+    title: board?.title || "Board",
+  };
+}
 
 const BoardIdPage = async ({ params }: BoardIdPageProps) => {
   const { orgId } = auth();
